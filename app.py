@@ -38,7 +38,7 @@ def searchWord(fields):
 
 
     #reading the text file the text file
-    f = open("alice.txt",'r')
+    f = open("text.txt",'r')
     lines = f.readlines()
     print(type(lines))
 
@@ -66,12 +66,12 @@ def searchWord(fields):
         #splitting to array
         txt = txt.split()
 
-        #creating a stemmer object to take main stem of each word
-        pStem = PorterStemmer()
+        # #creating a stemmer object to take main stem of each word
+        # pStem = PorterStemmer()
 
-        #stemming each word and removing stop words
-        txt = [pStem.stem(word) for word in txt
-                if not word in set(stopwords.words('english'))]
+        # #stemming each word and removing stop words
+        # txt = [pStem.stem(word) for word in txt
+        #         if not word in set(stopwords.words('english'))]
         
         #creating the string back from array elements
         txt = ' '.join(txt)
@@ -81,7 +81,22 @@ def searchWord(fields):
     # for i in clean_txt:
     #     print(i)
     # print(s_lines)
-    return s_lines
+    n=''
+    c=1
+    for i in clean_txt:
+        n+=' '
+        for j in i:
+
+            if c>int(fields['word']):
+                break
+            else:
+                n+=j
+                c=c+1
+        
+    print(n)
+
+
+    return n 
 
 
 
@@ -105,7 +120,7 @@ def recent():
 
         if dic:
             result=searchWord(dic)
-            print(result)
+            #print(result)
             if result==[]:
                 result=[]
                 flash('No records of earthquake for above mentioned days')
