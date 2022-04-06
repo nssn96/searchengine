@@ -27,6 +27,35 @@
         </table>
 
     </form>
+</br>
+
+{% if data %}
+
+<table>
+  
+    {% for key,value in data.items() %}
+        <tr>
+            <td><b>Search instance {{key}}</b></td>
+            <td>
+            {% for i in value %}
+            {{i}}
+        {% endfor %}
+    </td>
+        </tr>
+     
+    {% endfor %}
+    </table>
+
+    {% else %}
+    {% with msg = get_flashed_messages() %}
+    {% if msg %}
+        {% for info in msg %}
+            {{ info }}
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+{% endif %}
+
     
 </body>
 </html>

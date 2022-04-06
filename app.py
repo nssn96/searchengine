@@ -16,8 +16,14 @@ from nltk.corpus import stopwords
 nltk.download('stopwords')
 
 
+import nltk.data
+nltk.download('punkt')
+from nltk.tokenize import sent_tokenize, word_tokenize
+
+
 
 app = Flask(__name__)
+app.secret_key = 'random string'
 
 #Reference used for NLP processing
 #https://www.geeksforgeeks.org/python-nlp-analysis-of-restaurant-reviews/?ref=lbp
@@ -25,10 +31,23 @@ def searchWord(fields):
     #reading the text file the text file
     f = open("alice.txt",'r')
     lines = f.readlines()
-    #print(lines)
+    print(type(lines))
+
+    s_lines={}
+    #searching using the word and displaying the lines
+    count=1
+    for i,l in enumerate(lines):
+        if fields['word'] in l:
+            temp=[]
+            #print("Instance "+str(count))
+            for j in lines[i:i+3]:
+                if j in ['\n', '\r\n']:continue
+                else:temp.append(j)
+            s_lines[count]=temp
+            count=count+1
 
     clean_txt=[]
-
+    
     #Cleaning the data
     for i in lines:
         #converting all to lower cases
@@ -50,8 +69,13 @@ def searchWord(fields):
 
         clean_txt.append(txt)
     
-    for i in clean_txt:
-        print(i)
+    # for i in clean_txt:
+    #     print(i)
+    print(s_lines)
+    return s_lines
+
+
+
 
 
 
@@ -81,7 +105,7 @@ def recent():
             flash('Please enter values in the field')
 
         
-    return render_template('index.html')
+    return render_template('index.html',data=result)
 
 
 
