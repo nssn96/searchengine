@@ -28,6 +28,15 @@ app.secret_key = 'random string'
 #Reference used for NLP processing
 #https://www.geeksforgeeks.org/python-nlp-analysis-of-restaurant-reviews/?ref=lbp
 def searchWord(fields):
+
+    #split string by single space
+    chunks = re.split(' ', fields['word'])
+    #print(chunks)
+    if len(chunks)>1:
+        new_string = chunks[1]+" "+chunks[0]
+        #print(new_string)
+
+
     #reading the text file the text file
     f = open("alice.txt",'r')
     lines = f.readlines()
@@ -37,7 +46,7 @@ def searchWord(fields):
     #searching using the word and displaying the lines
     count=1
     for i,l in enumerate(lines):
-        if fields['word'] in l:
+        if (fields['word'] or new_string) in l:
             temp=[]
             #print("Instance "+str(count))
             for j in lines[i:i+3]:
@@ -71,7 +80,7 @@ def searchWord(fields):
     
     # for i in clean_txt:
     #     print(i)
-    print(s_lines)
+    # print(s_lines)
     return s_lines
 
 
@@ -96,6 +105,7 @@ def recent():
 
         if dic:
             result=searchWord(dic)
+            print(result)
             if result==[]:
                 result=[]
                 flash('No records of earthquake for above mentioned days')
