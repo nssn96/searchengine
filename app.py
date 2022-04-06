@@ -69,9 +69,9 @@ def searchWord(fields):
         # #creating a stemmer object to take main stem of each word
         # pStem = PorterStemmer()
 
-        # #stemming each word and removing stop words
-        # txt = [word for word in txt
-        #         if not word in set(stopwords.words('english'))]
+        #stemming each word and removing stop words
+        txt = [word for word in txt
+                if not word in set(stopwords.words('english'))]
         
         #creating the string back from array elements
         txt = ' '.join(txt)
@@ -82,28 +82,26 @@ def searchWord(fields):
     #     print(i)
     # print(s_lines)
     # Counter from collections
-       
-    # clean_text = clean_text.lower()
-    # skips = [".", ", ", ":", ";", "'", '"']
-    # for ch in skips:
-    #     clean_text = clean_text.replace(ch, "")
-    # word_counts = Counter(clean_text.split(" "))
+    lis=[]
+    
+    word_counts = Counter(str(clean_txt).split(" "))
+    lis.append(word_counts)
         #return word_counts
-    n=''
-    c=1
-    for i in clean_txt:
-        n+=' '
-        for j in i:
+    # n=''
+    # c=1
+    # for i in clean_txt:
+    #     n+=' '
+    #     for j in i:
 
-            if c>int(fields['word']):
-                break
-            else:
-                n+=j
-                c=c+1
+    #         if c>int(fields['word']):
+    #             break
+    #         else:
+    #             n+=j
+    #             c=c+1
 
 
-    print(n)
-    return n 
+    print(lis)
+    return lis
 
 
 

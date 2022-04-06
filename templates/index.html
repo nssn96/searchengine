@@ -28,16 +28,19 @@
 
     </form>
 </br>
-
 {% if data %}
-
 <table>
   
-    
-        <tr>
-            <td>{{data}}</td>
-        </tr>
-     
+    {% for key in data %}
+    <tr>
+        <td>{{key}}</td>
+           
+</td>
+    </tr>
+ 
+{% endfor %}
+
+
  
     </table>
 
@@ -50,7 +53,6 @@
     {% endif %}
     {% endwith %}
 {% endif %}
-
     
 </body>
 </html>
