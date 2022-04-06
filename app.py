@@ -69,9 +69,9 @@ def searchWord(fields):
         # #creating a stemmer object to take main stem of each word
         # pStem = PorterStemmer()
 
-        # #stemming each word and removing stop words
-        # txt = [pStem.stem(word) for word in txt
-        #         if not word in set(stopwords.words('english'))]
+        #stemming each word and removing stop words
+        txt = [word for word in txt
+                if not word in set(stopwords.words('english'))]
         
         #creating the string back from array elements
         txt = ' '.join(txt)
