@@ -14,7 +14,7 @@ from nltk.stem.porter import PorterStemmer
 # to remove stopword
 from nltk.corpus import stopwords
 nltk.download('stopwords')
-
+from collections import Counter
 
 import nltk.data
 nltk.download('punkt')
@@ -69,9 +69,9 @@ def searchWord(fields):
         # #creating a stemmer object to take main stem of each word
         # pStem = PorterStemmer()
 
-        #stemming each word and removing stop words
-        txt = [word for word in txt
-                if not word in set(stopwords.words('english'))]
+        # #stemming each word and removing stop words
+        # txt = [word for word in txt
+        #         if not word in set(stopwords.words('english'))]
         
         #creating the string back from array elements
         txt = ' '.join(txt)
@@ -81,6 +81,14 @@ def searchWord(fields):
     # for i in clean_txt:
     #     print(i)
     # print(s_lines)
+    # Counter from collections
+       
+    # clean_text = clean_text.lower()
+    # skips = [".", ", ", ":", ";", "'", '"']
+    # for ch in skips:
+    #     clean_text = clean_text.replace(ch, "")
+    # word_counts = Counter(clean_text.split(" "))
+        #return word_counts
     n=''
     c=1
     for i in clean_txt:
@@ -92,10 +100,9 @@ def searchWord(fields):
             else:
                 n+=j
                 c=c+1
-        
+
+
     print(n)
-
-
     return n 
 
 
